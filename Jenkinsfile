@@ -75,8 +75,8 @@ pipeline {
             steps {
                 sh '''
                 git checkout main
-                git reset --hard
-                git pull origin main
+                git fetch origin
+                git reset --hard origin/main
                 '''
             }
         }
