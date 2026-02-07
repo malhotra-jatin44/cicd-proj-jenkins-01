@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools {
+        nodejs 'node18'
+    }
     environment {
         DOCKER_IMAGE = "jatin44/node-app01"
         GIT_SHA = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
