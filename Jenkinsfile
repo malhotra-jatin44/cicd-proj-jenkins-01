@@ -81,19 +81,21 @@ pipeline {
         }
 
         stage('Commit Helm Changes') {
-            withCredentials([usernamePassword(
-                credentialsId: 'github-pat',
-                usernameVariable: 'GIT_USER',
-                passwordVariable: 'GIT_TOKEN'
-                )]) {
-                sh '''
-                  git checkout main
-                  git config user.name "jenkins"
-                  git config user.email "jenkins@ci.local"
-                  git add k8-charts/backend-chart/values.yaml
-                  git commit -m "ci: update node-app image to ${GIT_SHA}"
-                  git push origin main
-                '''
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'github-pat',
+                    usernameVariable: 'GIT_USER',
+                    passwordVariable: 'GIT_TOKEN'
+                    )]) {
+                    sh '''
+                    git checkout main
+                    git config user.name "jenkins"
+                    git config user.email "jenkins@ci.local"
+                    git add k8-charts/backend-chart/values.yaml
+                    git commit -m "ci: update node-app image to ${GIT_SHA}"
+                    git push origin main
+                    '''
+                }
             }
         }
     }
