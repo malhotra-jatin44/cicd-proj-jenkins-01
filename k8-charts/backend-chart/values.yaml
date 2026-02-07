@@ -11,7 +11,7 @@ image:
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "f1f004fc4bcb875c24163cfa025604b41def66b0"
+  tag: "c4478b3"
 
 env:
   dbrhost: mysql001-mysql-chart
