@@ -67,7 +67,7 @@ pipeline {
                 -v $PWD:/workdir \
                 -w /workdir \
                 alpine/helm:3.14.0 \
-                helm lint k8-charts/backend-chart
+                lint k8-charts/backend-chart
                 '''
             }
         }
