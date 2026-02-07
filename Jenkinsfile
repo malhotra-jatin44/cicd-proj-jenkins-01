@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'node18'
-    }
+    
     environment {
         DOCKER_IMAGE = "jatin44/node-app01"
         GIT_SHA = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
@@ -35,7 +33,7 @@ pipeline {
         stage('Docker Login') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: 'dockerhub-creds',
+                    credentialsId: 'dockerhub',
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
