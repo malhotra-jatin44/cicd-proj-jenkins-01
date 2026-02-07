@@ -83,6 +83,7 @@ pipeline {
         stage('Commit Helm Changes') {
             steps {
                 sh '''
+                  git checkout main
                   git config user.name "jenkins"
                   git config user.email "jenkins@ci.local"
                   git add k8-charts/backend-chart/values.yaml
