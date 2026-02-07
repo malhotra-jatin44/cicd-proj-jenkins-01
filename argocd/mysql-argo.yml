@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mysql001
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/malhotra-jatin44/cicd-proj01.git
+    targetRevision: main
+    path: k8-charts/mysql-chart
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
