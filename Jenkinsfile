@@ -81,7 +81,11 @@ pipeline {
         }
 
         stage('Commit Helm Changes') {
-            steps {
+            withCredentials([usernamePassword(
+                credentialsId: 'github-pat',
+                usernameVariable: 'GIT_USER',
+                passwordVariable: 'GIT_TOKEN'
+                )]) {
                 sh '''
                   git checkout main
                   git config user.name "jenkins"
