@@ -75,6 +75,8 @@ pipeline {
             steps {
                 sh '''
                 git checkout main
+                git reset --hard
+                git pull origin main
                 '''
             }
         }
@@ -97,7 +99,7 @@ pipeline {
                     sh '''
                     git config user.name "jenkins"
                     git config user.email "jenkins@ci.local"
-                    git pull --rebase origin main
+                    
                     git add k8-charts/backend-chart/values.yaml
                     git commit -m "ci: update node-app image to ${GIT_SHA}"
                     git push https://${GIT_USER}:${GIT_TOKEN}@github.com/malhotra-jatin44/cicd-proj-jenkins-01.git main
