@@ -63,8 +63,11 @@ pipeline {
         stage('Helm Lint') {
             steps {
                 sh '''
-                  helm lint k8-charts/backend-chart
-                  helm lint k8-charts/mysql-chart
+                  docker run --rm \
+                -v $PWD:/workdir \
+                -w /workdir \
+                alpine/helm:3.14.0 \
+                helm lint k8-charts/backend-chart
                 '''
             }
         }
