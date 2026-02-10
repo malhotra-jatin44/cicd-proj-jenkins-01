@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'worker' }
     
     environment {
         DOCKER_IMAGE = "jatin44/node-app01"
